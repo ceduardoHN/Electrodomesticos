@@ -49,6 +49,10 @@ Route::get('/nuevoElectrodomestico', function(){
     return view('nuevoElectrodomestico',compact("tipoE"));
 })->name("e.create");
 
+// Route::post("/nuevoElectrodomestico/store",function(){
+//     $tipoE=Models/TipoElectrodomestico::;
+// })->name("e.store");
+
 Route::post("/nuevoElectrodomestico/store",[ElectrodomesticoController::class,"store"])->name("e.store");
 Route::get("/nuevoElectrodomestico/editar/{id}",[ElectrodomesticoController::class,"edit"])->name("e.edit");
 Route::put("/nuevoElectrodomestico/update/{id}",[ElectrodomesticoController::class,"update"])->name("e.update");

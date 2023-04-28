@@ -82,7 +82,6 @@ class TipoElectrodomesticoController extends Controller
     {
         //
         $tipoE=tipoElectrodomestico::find($id);
-        $tipoE->codigo=$request->post("codigoTipo");
         $tipoE->descripcion=$request->post("descripcion");
         $tipoE->porcentajeISV=$request->post("isv");
         $tipoE->save();

@@ -53,7 +53,7 @@
                                         <p>                                        
                                             <select name="tipoEle" class="form-control">
                                                 @foreach ($tipoE as $item)
-                                                    <option value="{{$item->codigo}}">{{$item->codigo}}</option>
+                                                    <option value="{{$item->codigo}}">{{$item->descripcion}}</option>
                                                 @endforeach    
                                             </select>
                                         </p>

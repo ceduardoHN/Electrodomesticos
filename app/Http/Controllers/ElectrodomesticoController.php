@@ -39,14 +39,14 @@ class ElectrodomesticoController extends Controller
     public function store(Request $request)
     {
         //
-        $tE=new tipoElectrodomestico();
+        $tE=tipoElectrodomestico::find($request->post("tipoEle"));
         $e=new Electrodomestico();
         $e->codigo=$request->post("codigo");
         $e->descripcion=$request->post("descripcion");
         $e->tipoElectrodomestico=$request->post("tipoEle");
         $e->precio=$request->post("precio");
-        $e->ISV=$request->post("precio")*$tE->ISV;
-        $e->total=$request->post("precio")+$e->precio*$tE->ISV;
+        $e->ISV=$request->post("precio")*$tE->porcentajeISV;
+        $e->total=$e->precio+$e->ISV;
         $e->save();
         
         return redirect()->route("e.mant");
@@ -88,11 +88,13 @@ class ElectrodomesticoController extends Controller
     public function update(Request $request,$id)
     {
         //
+        $tE=TipoElectrodomestico::find($request->post("tipoEle"));
         $e=Electrodomestico::find($id);
-        $e->codigo=$request->post("codigo");
         $e->descripcion=$request->post("descripcion");
         $e->tipoElectrodomestico=$request->post("tipoEle");
         $e->precio=$request->post("precio");
+        $e->ISV=$request->post("precio")*$tE->porcentajeISV;
+        $e->total=$e->precio+$e->ISV;
         $e->save();
         
         return redirect()->route("e.mant");
